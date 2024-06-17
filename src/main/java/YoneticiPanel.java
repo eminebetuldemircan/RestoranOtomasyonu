@@ -139,11 +139,11 @@ public class YoneticiPanel extends JPanel {
 
     private JPanel createOrderManagementPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(239, 213, 186)); // Panel arka plan rengini pembe tonunda ayarladık
+        panel.setBackground(new Color(240, 248, 255)); // Metin alanı arka plan rengini açık mavi tonunda ayarladık
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.darkGray), "Sipariş Yönetimi", 0, 0, new Font("Arial", Font.BOLD, 14), Color.darkGray));
 
         orderTextArea = new JTextArea(10, 30);
-        orderTextArea.setBackground(new Color(239, 213, 186)); // Metin alanı arka plan rengini açık sarı tonunda ayarladık
+        orderTextArea.setBackground(new Color(240, 248, 255)); // Metin alanı arka plan rengini açık mavi tonunda ayarladık
         JScrollPane scrollPane = new JScrollPane(orderTextArea);
 
         JButton viewOrdersButton = new JButton("Siparişleri Görüntüle");
@@ -207,11 +207,11 @@ public class YoneticiPanel extends JPanel {
 
     private JPanel createReportsPanel() {
         JPanel panel = new JPanel(new BorderLayout());
-        panel.setBackground(new Color(206, 250, 215)); // Panel arka plan rengini açık sarı tonunda ayarladık
+        panel.setBackground(new Color(240, 248, 255)); // Metin alanı arka plan rengini açık mavi tonunda ayarladık
         panel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.darkGray), "Raporlar", 0, 0, new Font("Arial", Font.BOLD, 14), Color.darkGray));
 
         reportsTextArea = new JTextArea(10, 30);
-        reportsTextArea.setBackground(new Color(206, 250, 215)); // Metin alanı arka plan rengini açık sarı tonunda ayarladık
+        reportsTextArea.setBackground(new Color(240, 248, 255)); // Metin alanı arka plan rengini açık mavi tonunda ayarladık
         JScrollPane scrollPane = new JScrollPane(reportsTextArea);
 
         JButton generateReportsButton = new JButton("Raporları Oluştur");
