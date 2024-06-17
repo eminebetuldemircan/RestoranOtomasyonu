@@ -28,7 +28,7 @@ public class BillingPanel extends JPanel {
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 10, 10));
         formPanel.setBackground(Color.WHITE);
         formPanel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Masa Yönetimi", 2, 0, new Font("Arial", Font.BOLD, 16), Color.BLACK),
+                BorderFactory.createTitledBorder(BorderFactory.createLineBorder(Color.BLACK), "Ödeme İşlemleri", 2, 0, new Font("Arial", Font.BOLD, 16), Color.BLACK),
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
         formPanel.add(new JLabel("Sipariş ID:"));
@@ -173,7 +173,7 @@ public class BillingPanel extends JPanel {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                JFrame frame = new JFrame("Masa Yönetimi");
+                JFrame frame = new JFrame("Ödeme ve Fatura Yönetimi");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setSize(600, 400);
                 frame.add(new BillingPanel());
