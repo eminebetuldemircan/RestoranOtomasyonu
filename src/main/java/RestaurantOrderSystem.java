@@ -17,7 +17,7 @@ public class RestaurantOrderSystem {
 
             // Üst bölüm başlık paneli
             JPanel titlePanel = new JPanel();
-            titlePanel.setBackground(Color.ORANGE); // Başlık panel arka plan rengini koyu griye ayarladık
+            titlePanel.setBackground(Color.ORANGE); // Başlık panel arka plan rengini turuncuya ayarladık
             titlePanel.setPreferredSize(new Dimension(mainFrame.getWidth(), 40)); // Başlık panel boyutunu ayarladık
 
             JLabel titleLabel = new JLabel("Restoran Sipariş Sistemi");
@@ -29,7 +29,7 @@ public class RestaurantOrderSystem {
 
             // Sekmeleri içerecek tab paneli
             JTabbedPane tabbedPane = new JTabbedPane();
-            tabbedPane.setBackground(Color.YELLOW); // Sekme panel arka plan rengini açık griye ayarladık
+            tabbedPane.setBackground(Color.YELLOW); // Sekme panel arka plan rengini sarıya ayarladık
 
             tabbedPane.addTab("Garson Paneli", new GarsonPanel());
             tabbedPane.addTab("Aşçı Paneli", new AsciPanel());
