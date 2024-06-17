@@ -103,11 +103,11 @@ public class InventoryManagementPanel extends JPanel {
 
     private void loadInventory() {
         // Veritabanından envanteri yükleme yerine örnek veri ekleyelim
-        tableModel.addRow(new Object[]{1, "Un", "50 kg", 150.00});
-        tableModel.addRow(new Object[]{2, "Şeker", "50 kg", 98.90});
-        tableModel.addRow(new Object[]{3, "Tuz", "75 kg", 120.75 });
-        tableModel.addRow(new Object[]{4, "Domates", "25 kg", 89.99});
-        tableModel.addRow(new Object[]{5, "Biber", "25 kg", 80.00});
+        tableModel.addRow(new Object[]{1, "Un", "50 kg", 1500.00});
+        tableModel.addRow(new Object[]{2, "Şeker", "50 kg", 2100.00});
+        tableModel.addRow(new Object[]{3, "Tuz", "50 kg", 1750.90 });
+        tableModel.addRow(new Object[]{4, "Domates", "25 kg", 872.50});
+        tableModel.addRow(new Object[]{5, "Biber", "25 kg", 972.50});
     }
 
     private void addItem() {
