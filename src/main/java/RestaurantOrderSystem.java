@@ -11,7 +11,6 @@ public class RestaurantOrderSystem {
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             mainFrame.setSize(1200, 800);
 
-
             // Ana panel oluşturma
             JPanel mainPanel = new JPanel(new BorderLayout());
             mainPanel.setBackground(Color.white); // Ana panel arka plan rengini beyaza ayarladık
