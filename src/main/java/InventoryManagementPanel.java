@@ -10,6 +10,7 @@ public class InventoryManagementPanel extends JPanel {
     private JTextField itemNameField;
     private JTextField itemKilogramField;
     private JTextField itemPriceField;
+    private JTextField itemThresholdField;
     private JTable inventoryTable;
     private DefaultTableModel tableModel;
     private JButton addButton;
@@ -22,7 +23,7 @@ public class InventoryManagementPanel extends JPanel {
         setBorder(new EmptyBorder(10, 10, 10, 10));
 
         // Form Paneli
-        JPanel formPanel = new JPanel(new GridLayout(3, 2, 10, 10));
+        JPanel formPanel = new JPanel(new GridLayout(5, 2, 5, 5));
         TitledBorder formBorder = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(0, 102, 102), 2), "Ürün Bilgileri");
         formBorder.setTitleJustification(TitledBorder.CENTER);
         formBorder.setTitleFont(new Font("Arial", Font.BOLD, 14));
@@ -30,17 +31,29 @@ public class InventoryManagementPanel extends JPanel {
 
         formPanel.setBackground(new Color(240, 240, 240));
 
-        formPanel.add(new JLabel("Ürün Adı:"));
+        JLabel itemNameLabel = new JLabel("Ürün Adı:");
+        itemNameLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        formPanel.add(itemNameLabel);
         itemNameField = new JTextField();
         formPanel.add(itemNameField);
 
-        formPanel.add(new JLabel("Kilogram:"));
+        JLabel itemKilogramLabel = new JLabel("Kilogram:");
+        itemKilogramLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        formPanel.add(itemKilogramLabel);
         itemKilogramField = new JTextField();
         formPanel.add(itemKilogramField);
 
-        formPanel.add(new JLabel("Fiyat:"));
+        JLabel itemPriceLabel = new JLabel("Fiyat:");
+        itemPriceLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        formPanel.add(itemPriceLabel);
         itemPriceField = new JTextField();
         formPanel.add(itemPriceField);
+
+        JLabel itemThresholdLabel = new JLabel("Stok Eşiği:");
+        itemThresholdLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        formPanel.add(itemThresholdLabel);
+        itemThresholdField = new JTextField();
+        formPanel.add(itemThresholdField);
 
         addButton = new JButton("Ekle");
         addButton.setBackground(new Color(34, 139, 34)); // Yeşil tonu
@@ -78,7 +91,7 @@ public class InventoryManagementPanel extends JPanel {
         add(formPanel, BorderLayout.NORTH);
 
         // Tablo Paneli
-        tableModel = new DefaultTableModel(new Object[]{"ID", "Ürün Adı", "Kilogram", "Fiyat"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"ID", "Ürün Adı", "Kilogram", "Fiyat", "Stok Eşiği"}, 0);
         inventoryTable = new JTable(tableModel);
         JScrollPane scrollPane = new JScrollPane(inventoryTable);
         scrollPane.setBorder(BorderFactory.createCompoundBorder(
@@ -99,26 +112,29 @@ public class InventoryManagementPanel extends JPanel {
 
         // Örnek veri yükleme
         loadInventory();
+        checkLowStock();
     }
 
     private void loadInventory() {
         // Veritabanından envanteri yükleme yerine örnek veri ekleyelim
-        tableModel.addRow(new Object[]{1, "Un", "50 kg", 1500.00});
-        tableModel.addRow(new Object[]{2, "Şeker", "50 kg", 2100.00});
-        tableModel.addRow(new Object[]{3, "Tuz", "50 kg", 1750.90 });
-        tableModel.addRow(new Object[]{4, "Domates", "25 kg", 872.50});
-        tableModel.addRow(new Object[]{5, "Biber", "25 kg", 972.50});
+        tableModel.addRow(new Object[]{1, "Un", "50 kg", 1500.00, 10});
+        tableModel.addRow(new Object[]{2, "Şeker", "50 kg", 2100.00, 15});
+        tableModel.addRow(new Object[]{3, "Tuz", "50 kg", 1750.90, 15});
+        tableModel.addRow(new Object[]{4, "Domates", "25 kg", 872.50, 5});
+        tableModel.addRow(new Object[]{5, "Biber", "25 kg", 972.50, 7});
     }
 
     private void addItem() {
         String name = itemNameField.getText();
         String kilogram = itemKilogramField.getText();
         double price = Double.parseDouble(itemPriceField.getText());
+        int threshold = Integer.parseInt(itemThresholdField.getText());
 
         // Veritabanına ekleme yerine örnek veri ekleme
-        tableModel.addRow(new Object[]{tableModel.getRowCount() + 1, name, kilogram, price});
+        tableModel.addRow(new Object[]{tableModel.getRowCount() + 1, name, kilogram, price, threshold});
 
         statusLabel.setText("Ürün başarıyla eklendi.");
+        checkLowStock();
     }
 
     private void updateItem() {
@@ -127,13 +143,16 @@ public class InventoryManagementPanel extends JPanel {
             String name = itemNameField.getText();
             String kilogram = itemKilogramField.getText();
             double price = Double.parseDouble(itemPriceField.getText());
+            int threshold = Integer.parseInt(itemThresholdField.getText());
 
             // Veritabanında güncelleme yerine örnek veri güncelleme
             tableModel.setValueAt(name, selectedRow, 1);
             tableModel.setValueAt(kilogram, selectedRow, 2);
             tableModel.setValueAt(price, selectedRow, 3);
+            tableModel.setValueAt(threshold, selectedRow, 4);
 
             statusLabel.setText("Ürün başarıyla güncellendi.");
+            checkLowStock();
         } else {
             statusLabel.setText("Lütfen güncellenecek bir ürün seçin.");
         }
@@ -146,8 +165,29 @@ public class InventoryManagementPanel extends JPanel {
             tableModel.removeRow(selectedRow);
 
             statusLabel.setText("Ürün başarıyla silindi.");
+            checkLowStock();
         } else {
             statusLabel.setText("Lütfen silinecek bir ürün seçin.");
+        }
+    }
+
+    private void checkLowStock() {
+        StringBuilder lowStockItems = new StringBuilder("<html>Düşük stokta olan ürünler:<br>");
+        boolean lowStockFound = false;
+
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            int kilogram = Integer.parseInt(((String) tableModel.getValueAt(i, 2)).replaceAll("[^0-9]", ""));
+            int threshold = (int) tableModel.getValueAt(i, 4);
+            if (kilogram < threshold) {
+                lowStockFound = true;
+                lowStockItems.append(tableModel.getValueAt(i, 1)).append(" (").append(kilogram).append(" kg)<br>");
+            }
+        }
+
+        if (lowStockFound) {
+            statusLabel.setText(lowStockItems.toString() + "</html>");
+        } else {
+            statusLabel.setText("Tüm ürünlerin stoğu yeterli.");
         }
     }
 
