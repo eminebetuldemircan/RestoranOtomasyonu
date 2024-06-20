@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserManagementPanel extends JPanel {
+public class UserManagementPanel extends ImagePanel {
 
     private JTextField usernameField;
     private JPasswordField passwordField;
     private Map<String, String> users; // Kullanıcı adı ve şifrelerin saklandığı harita
 
-    public UserManagementPanel() {
-        setBackground(new Color(250, 250, 250)); // Arka plan rengi açık gri tonu olarak ayarlandı
+    public UserManagementPanel(String imagePath) {
+        super(imagePath); // Arka plan görüntüsünü ayarla
         setLayout(new GridBagLayout());
         GridBagConstraints gbcMain = new GridBagConstraints();
         gbcMain.insets = new Insets(20, 20, 20, 20);
@@ -24,8 +24,8 @@ public class UserManagementPanel extends JPanel {
         users.put("asci", "ascipass");
 
         JLabel titleLabel = new JLabel("Kullanıcı Girişi");
-        titleLabel.setFont(new Font("Tahoma", Font.BOLD, 24));
-        titleLabel.setForeground(new Color(32, 24, 145));
+        titleLabel.setFont(new Font("Tahoma", Font.BOLD, 36));
+        titleLabel.setForeground(new Color(0, 0, 0));
         gbcMain.gridx = 0;
         gbcMain.gridy = 0;
         gbcMain.gridwidth = 2;
@@ -33,11 +33,13 @@ public class UserManagementPanel extends JPanel {
         add(titleLabel, gbcMain);
 
         JPanel inputPanel = new JPanel(new GridBagLayout());
-        inputPanel.setBackground(new Color(250, 250, 250)); // Arka plan rengi açık gri tonu olarak ayarlandı
+        inputPanel.setOpaque(false); // Arka planı saydam yap
         GridBagConstraints gbcInput = new GridBagConstraints();
         gbcInput.insets = new Insets(10, 10, 10, 10);
 
         JLabel usernameLabel = new JLabel("Kullanıcı Adı:");
+        usernameLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+        usernameLabel.setForeground(new Color(0, 0, 0));
         gbcInput.gridx = 0;
         gbcInput.gridy = 0;
         gbcInput.anchor = GridBagConstraints.LINE_END;
@@ -50,6 +52,8 @@ public class UserManagementPanel extends JPanel {
         inputPanel.add(usernameField, gbcInput);
 
         JLabel passwordLabel = new JLabel("Şifre:");
+        passwordLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+        passwordLabel.setForeground(new Color(0, 0, 0));
         gbcInput.gridx = 0;
         gbcInput.gridy = 1;
         gbcInput.anchor = GridBagConstraints.LINE_END;
@@ -68,7 +72,7 @@ public class UserManagementPanel extends JPanel {
         add(inputPanel, gbcMain);
 
         JPanel buttonPanel = new JPanel(new GridBagLayout());
-        buttonPanel.setBackground(new Color(250, 250, 250)); // Arka plan rengi açık gri tonu olarak ayarlandı
+        buttonPanel.setOpaque(false); // Arka planı saydam yap
         GridBagConstraints gbcButtons = new GridBagConstraints();
         gbcButtons.insets = new Insets(10, 10, 10, 10);
 
@@ -131,7 +135,7 @@ public class UserManagementPanel extends JPanel {
                 JOptionPane.showMessageDialog(UserManagementPanel.this, "Giriş başarılı!", "Başarılı", JOptionPane.INFORMATION_MESSAGE);
                 clearFields();
                 // Yönetici paneline geçiş burada yapılabilir
-                // new YoneticiPanel().setVisible(true); // Yönetici paneli örneği oluşturuldu
+                 //new YoneticiPanel().setVisible(true); // Yönetici paneli örneği oluşturuldu
 
                 // Bu kısma, yönetici paneline geçiş kodu eklenebilir.
             } else {
@@ -149,10 +153,12 @@ public class UserManagementPanel extends JPanel {
         JFrame frame = new JFrame("Kullanıcı Girişi");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(350, 300); // Çerçeve boyutu ayarlandı
-        frame.getContentPane().setBackground(new Color(250, 250, 250)); // Arka plan rengi açık gri tonu olarak ayarlandı
 
-        UserManagementPanel panel = new UserManagementPanel();
+        // Arka plan görüntüsünü ayarla
+        String imagePath = "C:\\Users\\emine\\IdeaProjects\\RestaurantAutomation\\src\\main\\resources\\images\\my_image.jpg";
+        UserManagementPanel panel = new UserManagementPanel(imagePath);
         frame.add(panel);
+        frame.pack(); // Çerçevenin boyutunu bileşenlerin boyutlarına göre ayarla
         frame.setLocationRelativeTo(null); // Çerçeveyi ekranın ortasına konumlandır
 
         frame.setVisible(true);
