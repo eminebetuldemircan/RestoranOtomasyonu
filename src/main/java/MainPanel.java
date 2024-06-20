@@ -20,14 +20,14 @@ public class MainPanel extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 6));
 
-        JButton userManagementButton = new JButton("Kullanıcı Yönetimi");
+        //JButton userManagementButton = new JButton("Kullanıcı Yönetimi");
         JButton tableManagementButton = new JButton("Masa Yönetimi");
         JButton menuManagementButton = new JButton("Menü Yönetimi");
         JButton orderManagementButton = new JButton("Sipariş Yönetimi");
         JButton inventoryManagementButton = new JButton("Envanter Yönetimi");
         JButton billingButton = new JButton("Fatura ve Ödeme");
 
-        buttonPanel.add(userManagementButton);
+       // buttonPanel.add(userManagementButton);
         buttonPanel.add(tableManagementButton);
         buttonPanel.add(menuManagementButton);
         buttonPanel.add(orderManagementButton);
@@ -41,7 +41,7 @@ public class MainPanel extends JPanel {
         JPanel cardPanel = new JPanel(cardLayout);
 
         // Yönetim Panellerini Kart Paneline Ekleyin
-        cardPanel.add(new UserManagementPanel(), "Kullanıcı Yönetimi");
+       // cardPanel.add(new UserManagementPanel(), "Kullanıcı Yönetimi");
         cardPanel.add(new TableManagementPanel(), "Masa Yönetimi");
         cardPanel.add(new MenuManagementPanel(), "Menü Yönetimi");
         cardPanel.add(new OrderManagementPanel(), "Sipariş Yönetimi");
@@ -51,7 +51,7 @@ public class MainPanel extends JPanel {
         add(cardPanel, BorderLayout.CENTER);
 
         // Butonlara Eylem Dinleyicileri Ekleyin
-        userManagementButton.addActionListener(e -> cardLayout.show(cardPanel, "Kullanıcı Yönetimi"));
+        //userManagementButton.addActionListener(e -> cardLayout.show(cardPanel, "Kullanıcı Yönetimi"));
         tableManagementButton.addActionListener(e -> cardLayout.show(cardPanel, "Masa Yönetimi"));
         menuManagementButton.addActionListener(e -> cardLayout.show(cardPanel, "Menü Yönetimi"));
         orderManagementButton.addActionListener(e -> cardLayout.show(cardPanel, "Sipariş Yönetimi"));
