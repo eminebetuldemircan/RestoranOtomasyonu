@@ -35,7 +35,7 @@ public class TableManagementPanel extends JPanel {
         for (int i = 0; i < 15; i++) {
             int masaNumarasi = i + 11; // Bahçe masaları 11-25 numaralı
             bahceMasalari[i] = new JButton("Salon Masa " + masaNumarasi);
-            bahceMasalari[i].setBackground(Color.MAGENTA); // Bahçe masaları yeşil
+            bahceMasalari[i].setBackground(Color.PINK); // Bahçe masaları yeşil
             bahceMasalari[i].addActionListener(new MasaActionDinleyicisi(masaNumarasi));
             bahcePaneli.add(bahceMasalari[i]);
         }
