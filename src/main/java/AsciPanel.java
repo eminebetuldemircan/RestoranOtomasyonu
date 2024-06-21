@@ -54,6 +54,27 @@ public class AsciPanel extends JPanel {
         preparedOrderPanel.add(showPreparedOrdersButton, BorderLayout.SOUTH);
 
         add(preparedOrderPanel, BorderLayout.CENTER);
+
+        // Örnek siparişler ekleyelim
+        addExampleOrders();
+    }
+
+    private void addExampleOrders() {
+        Order order1 = new Order("Bahçe Masa 1", 4, "Pizza, Salata, Su", 315.00);
+        Order order2 = new Order("Salon Masa 12", 2, "Lahmacun, Baklava, Ayran", 250.00);
+        Order order3 = new Order("Bahçe Masa 3", 1, "Pide, Kola", 125.00);
+        Order order4 = new Order("Salon Masa 14", 3, "Kebap, Künefe, Soda", 400.00);
+
+
+        OrderData.addOrder(order1);
+        OrderData.addOrder(order2);
+        OrderData.addOrder(order3);
+        OrderData.addOrder(order4);
+
+        tableModel.addRow(new Object[]{order1.getTableNumber(), order1.getPersonCount(), order1.getItems(), order1.getTotalPrice()});
+        tableModel.addRow(new Object[]{order2.getTableNumber(), order2.getPersonCount(), order2.getItems(), order2.getTotalPrice()});
+        tableModel.addRow(new Object[]{order3.getTableNumber(), order3.getPersonCount(), order3.getItems(), order3.getTotalPrice()});
+        tableModel.addRow(new Object[]{order4.getTableNumber(), order4.getPersonCount(), order4.getItems(), order4.getTotalPrice()});
     }
 
     private class PrepareOrderListener implements ActionListener {
@@ -85,5 +106,17 @@ public class AsciPanel extends JPanel {
             }
         }
     }
-}
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                JFrame frame = new JFrame("Aşçı Ekranı");
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setSize(600, 400);
+                frame.add(new AsciPanel());
+                frame.setVisible(true);
+            }
+        });
+    }
+}
