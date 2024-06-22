@@ -30,10 +30,25 @@ public class YoneticiPanel extends JPanel {
         reports = new ArrayList<>();
 
         // Test verileri
-        orders.add("Sipariş 1: Pizza");
-        orders.add("Sipariş 2: Hamburger");
-        menuItems.add("Menü Öğesi  1: Pizza");
-        menuItems.add("Menü Öğesi 2: Hamburger");
+        orders.add("Sipariş 1: Pizza, Salata, Su");
+        orders.add("Sipariş 2: Hamburger, Patates Kızartması, Ayran");
+        orders.add("Sipariş 3: Lahmacun, Baklava, Ayran");
+        orders.add("Sipariş 4: Pide, Kola");
+        orders.add("Sipariş 5: Kebap, Künefe, Soda");
+
+        menuItems.add("Menü Öğesi 1: Pizza - 100 TL");
+        menuItems.add("Menü Öğesi 2: Hamburger - 85 TL");
+        menuItems.add("Menü Öğesi 3: Patates Kızartması - 35 TL");
+        menuItems.add("Menü Öğesi 4: Lahmacun - 75 TL");
+        menuItems.add("Menü Öğesi 5: Kebap - 150 TL");
+        menuItems.add("Menü Öğesi 6: Salata - 55 TL");
+        menuItems.add("Menü Öğesi 7: Baklava - 70 TL");
+        menuItems.add("Menü Öğesi 8: Künefe - 80 TL");
+        menuItems.add("Menü Öğesi 9: Kola - 10 TL");
+        menuItems.add("Menü Öğesi 10: Ayran - 8 TL");
+        menuItems.add("Menü Öğesi 11: Soda - 10 TL");
+        menuItems.add("Menü Öğesi 12: Su - 5 TL");
+
         reports.add("Rapor 1: Günlük Satış Raporu");
         reports.add("Rapor 2: Haftalık Satış Raporu");
 
@@ -192,7 +207,7 @@ public class YoneticiPanel extends JPanel {
         });
 
         panel.add(scrollPane, BorderLayout.CENTER);
-        panel.add(editMenuButton        , BorderLayout.SOUTH);
+        panel.add(editMenuButton, BorderLayout.SOUTH);
 
         return panel;
     }
@@ -252,7 +267,8 @@ public class YoneticiPanel extends JPanel {
         // En popüler menü öğeleri ve müşteri tercihleri analizi
         sb.append("En Popüler Menü Öğeleri:\n");
         sb.append("1. Pizza - 150 sipariş\n");
-        sb.append("2. Hamburger - 120 sipariş\n\n");
+        sb.append("2. Hamburger - 120 sipariş\n");
+        sb.append("3. Makarna - 100 sipariş\n\n");
 
         sb.append("Müşteri Tercihleri Analizi:\n");
         sb.append("Nakit: %40\n");
@@ -278,4 +294,3 @@ public class YoneticiPanel extends JPanel {
             }
         });
     }
-}
